@@ -21,5 +21,4 @@
         android:icon="@drawable/ic_musclechart_black_24dp"
         android:title="@string/title_musclechart" />
 
-
 </menu>
