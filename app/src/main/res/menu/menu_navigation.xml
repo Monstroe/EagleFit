@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard"/>
+    <item
+        android:id="@+id/muscle_chart"
+        android:title="Search"
+        android:icon="@drawable/ic_search"/>
+
+    <item
+        android:id="@+id/workout"
+        android:title="Workouts"
+        android:icon="@drawable/ic_workout"/>
+
+    <item
+        android:id="@+id/stats"
+        android:title="Statistics"
+        android:icon="@drawable/ic_stats"/>
+
+</menu>
