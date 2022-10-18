@@ -16,36 +16,44 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    DatabaseHelper dataBase = DatabaseHelper.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Set up bottom menu
         BottomNavigationView menuNav = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, new DashboardFragment()).commit();
-
         menuNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
-                switch (item.getItemId()) {
-                    case R.id.dashboard: fragment = new DashboardFragment();
-                        break;
-                    case R.id.muscle_chart: fragment = new MuscleChartFragment();
-                        break;
-                    case R.id.workout: fragment = new WorkoutFragment();
-                        break;
-                    case R.id.stats: fragment = new StatsFragment();
-                        break;
-                }
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, fragment).commit();
-
+                setActivePage(item.getItemId());
                 return true;
             }
         });
+        //Start on dashboard page
+        setActivePage(R.id.dashboard);
+
+
 
     }
+
+    public void setActivePage(int pageId) {
+        Fragment fragment = null;
+        switch (pageId) {
+            case R.id.dashboard: fragment = new DashboardFragment();
+                break;
+            case R.id.muscle_chart: fragment = new MuscleChartFragment();
+                break;
+            case R.id.workout: fragment = new WorkoutFragment();
+                break;
+            case R.id.stats: fragment = new StatsFragment();
+                break;
+        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, fragment).commit();
+    }
+
 }
