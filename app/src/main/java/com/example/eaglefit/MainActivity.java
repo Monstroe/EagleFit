@@ -7,9 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.eaglefit.fragments.DashboardFragment;
+import com.example.eaglefit.database.DatabaseHelper;
+import com.example.eaglefit.fragments.HomeFragment;
 import com.example.eaglefit.fragments.MuscleChartFragment;
-import com.example.eaglefit.fragments.StatsFragment;
+import com.example.eaglefit.fragments.PersonalFragment;
 import com.example.eaglefit.fragments.WorkoutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Start on dashboard page
-        setActivePage(R.id.dashboard);
+        setActivePage(R.id.home);
 
 
 
@@ -43,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
     public void setActivePage(int pageId) {
         Fragment fragment = null;
         switch (pageId) {
-            case R.id.dashboard: fragment = new DashboardFragment();
+            case R.id.home: fragment = new HomeFragment();
                 break;
             case R.id.muscle_chart: fragment = new MuscleChartFragment();
                 break;
             case R.id.workout: fragment = new WorkoutFragment();
                 break;
-            case R.id.stats: fragment = new StatsFragment();
+            case R.id.personal: fragment = new PersonalFragment();
                 break;
         }
 

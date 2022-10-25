@@ -1,4 +1,4 @@
-package com.example.eaglefit;
+package com.example.eaglefit.database;
 
 
 import android.util.Log;

@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/dashboard"
-        android:title="Dashboard"
-        android:icon="@drawable/ic_dashboard"/>
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/muscle_chart"
         android:title="Search"
-        android:icon="@drawable/ic_search"/>
+        android:icon="@drawable/ic_muscle"/>
 
     <item
         android:id="@+id/workout"
@@ -16,8 +16,8 @@
         android:icon="@drawable/ic_workout"/>
 
     <item
-        android:id="@+id/stats"
-        android:title="Statistics"
-        android:icon="@drawable/ic_stats"/>
+        android:id="@+id/personal"
+        android:title="Personal"
+        android:icon="@drawable/ic_personal"/>
 
 </menu>
