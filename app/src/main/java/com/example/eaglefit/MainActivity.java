@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         //Start on dashboard page
         setActivePage(R.id.home);
 
-
-
     }
 
     public void setActivePage(int pageId) {
