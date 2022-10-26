@@ -4,20 +4,20 @@
     <item
         android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_baseline_home_24"/>
     <item
         android:id="@+id/muscle_chart"
-        android:title="Search"
-        android:icon="@drawable/ic_muscle"/>
+        android:title="Muscle Chart"
+        android:icon="@drawable/ic_bicep"/>
 
     <item
         android:id="@+id/workout"
-        android:title="Workouts"
-        android:icon="@drawable/ic_workout"/>
+        android:title="My Workouts"
+        android:icon="@drawable/ic_baseline_fitness_center_24"/>
 
     <item
         android:id="@+id/personal"
-        android:title="Personal"
-        android:icon="@drawable/ic_personal"/>
+        android:title="My Profile"
+        android:icon="@drawable/ic_baseline_person_24"/>
 
 </menu>
