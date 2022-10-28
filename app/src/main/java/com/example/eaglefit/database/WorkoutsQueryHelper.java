@@ -1,5 +1,8 @@
 package com.example.eaglefit.database;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.LinkedHashMap;
@@ -35,15 +38,26 @@ public class WorkoutsQueryHelper {
 
     private static final String TAG = "WorkoutsQueryHelper";
 
+    private DatabaseHelper databaseHelper;
+
     /*private final LinkedHashMap<MuscleName, MuscleCategory> muscles = new LinkedHashMap<>() {{
         put(MuscleName.Chest, MuscleCategory.Chest);
         put(MuscleName.Traps, MuscleCategory.Back);
         //Add more here
     }};*/
 
+    public WorkoutsQueryHelper(Context context) {
+        databaseHelper = DatabaseHelper.getInstance(context);
+    }
+
     public String[] grabExercises(MuscleName muscleName) {
         String muscleNameStr = getMuscleNameString(muscleName);
 
+        String query = "SELECT * WHERE Muscle_Worked_1='" + muscleNameStr + "' OR Muscle_Worked_2='" + muscleNameStr + "' OR Muscle_Worked_3='" + muscleNameStr + "'";
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        Cursor data = db.rawQuery(query, null);
+
+        //TODO: Turn into String[]
         return null;
     }
 

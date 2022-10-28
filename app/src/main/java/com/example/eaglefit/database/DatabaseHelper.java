@@ -140,7 +140,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor grabSpecificRows(String tableName, String[] colNames, String columnEquals, String value) {
-        return null;
+    public Cursor grabSpecificData(String tableName, String[] colNames, String[] columnEquals, String[] value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT ";
+        if(colNames == null)
+            query += "* ";
+        else {
+            for(String col : colNames) {
+                query += col + ",";
+            }
+        }
+        query = query.substring(0, query.length() - 2) + "FROM " + tableName + " WHERE ";
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "Executed CMD: " + query);
+        return data;
     }
 }
