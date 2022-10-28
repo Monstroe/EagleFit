@@ -63,7 +63,7 @@ public class TableBuilder {
             declaration += columnsArr[i][0] + " " + columnsArr[i][1] + ", ";
         }
 
-        declaration = declaration.substring(0, declaration.length() - 3);
+        declaration = declaration.substring(0, declaration.length() - 2);
         declaration += ")";
         return declaration;
     }

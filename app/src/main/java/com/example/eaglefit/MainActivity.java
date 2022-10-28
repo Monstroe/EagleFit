@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.eaglefit.database.DatabaseHelper;
@@ -16,6 +17,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     DatabaseHelper dataBase = DatabaseHelper.getInstance(this);
 
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        Log.d(TAG, dataBase.grabTable("Workouts").toString());
+
         //Start on dashboard page
         setActivePage(R.id.home);
 

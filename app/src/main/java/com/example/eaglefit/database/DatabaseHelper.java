@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String TAG = "DatabaseHelper";
 
     private static DatabaseHelper instance;
 
@@ -75,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_INFO);
     }
 
-    public boolean addItemToDatabase(String tableName, String columnName, String item) {
+    public boolean addItem(String tableName, String columnName, String item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(columnName, item);
@@ -86,7 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean addItemToDatabase(String tableName, String columnName, int item) {
+    public boolean addItem(String tableName, String columnName, int item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(columnName, item);
@@ -97,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean addItemToDatabase(String tableName, String columnName, float item) {
+    public boolean addItem(String tableName, String columnName, float item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(columnName, item);
@@ -108,17 +111,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getTableFromDatabase(String tableName) {
+    public Cursor grabTable(String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + tableName;
         Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "Executed CMD: " + query);
         return data;
     }
 
-    public Cursor getRowFromDatabase(String tableName, String rowName) {
+    public Cursor grabColumn(String tableName, String colName) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + rowName + " FROM " + tableName;
+        String query = "SELECT " + colName + " FROM " + tableName;
         Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "Executed CMD: " + query);
         return data;
+    }
+
+    public Cursor grabColumns(String tableName, String[] colNames)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT ";
+        for(String col : colNames) {
+            query += col + ",";
+        }
+        query = query.substring(0, query.length() - 2) + "FROM " + tableName;
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "Executed CMD: " + query);
+        return data;
+    }
+
+    public Cursor grabSpecificRows(String tableName, String[] colNames, String columnEquals, String value) {
+        return null;
     }
 }
