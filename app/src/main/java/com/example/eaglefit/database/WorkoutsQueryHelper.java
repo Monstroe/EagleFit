@@ -5,34 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
-enum MuscleName {
-    Chest,
-    Traps,
-    Lats,
-    LowerBack,
-    FrontDelts,
-    SideDelts,
-    RearDelts,
-    Biceps,
-    Triceps,
-    Forearms,
-    Glutes,
-    Quads,
-    Hamstrings,
-    Calves,
-    Abs
-}
-
-enum MuscleCategory {
-    Chest,
-    Back,
-    Shoulders,
-    Arms,
-    Legs,
-    Abs
-}
+import com.example.eaglefit.database.MuscleName;
 
 public class WorkoutsQueryHelper {
 
@@ -40,30 +17,27 @@ public class WorkoutsQueryHelper {
 
     private DatabaseHelper databaseHelper;
 
-    /*private final LinkedHashMap<MuscleName, MuscleCategory> muscles = new LinkedHashMap<>() {{
-        put(MuscleName.Chest, MuscleCategory.Chest);
-        put(MuscleName.Traps, MuscleCategory.Back);
-        //Add more here
-    }};*/
-
     public WorkoutsQueryHelper(Context context) {
         databaseHelper = DatabaseHelper.getInstance(context);
     }
 
     public String[] grabExercises(MuscleName muscleName) {
-        String muscleNameStr = getMuscleNameString(muscleName);
+        Cursor data = grabExerciseCursor(getMuscleNameString(muscleName));
 
-        String query = "SELECT * WHERE Muscle_Worked_1='" + muscleNameStr + "' OR Muscle_Worked_2='" + muscleNameStr + "' OR Muscle_Worked_3='" + muscleNameStr + "'";
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        Cursor data = db.rawQuery(query, null);
+        List<String> dataList = new ArrayList<String>();
+        while(data.moveToNext()) {
+            dataList.add(data.getString(0));
+        }
 
-        //TODO: Turn into String[]
-        return null;
+        return (String[]) dataList.toArray();
     }
 
-    public String[] grabExercises(MuscleCategory muscleCategory) {
-
-        return null;
+    private Cursor grabExerciseCursor(String muscleName) {
+        String query = "SELECT " + databaseHelper.COLUMNS_WORKOUTS[0][0] + "," + databaseHelper.COLUMNS_WORKOUTS[1][0] + " WHERE " + databaseHelper.COLUMNS_WORKOUTS[2][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[3][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[4][0] + "='" + muscleName + "'";
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+        return data;
     }
 
     private String getMuscleNameString(MuscleName muscleName) {

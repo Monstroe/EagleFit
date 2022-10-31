@@ -13,29 +13,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper instance;
 
-    private static final String DATABASE_NAME = "EagleFitData";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "EagleFitData";
+    private static final int DATABASE_VERSION = 2;
 
-    private static final String TABLE_WORKOUTS = "Workouts";
-    private static final String TABLE_USER_PROGRESS = "UserProgress";
-    private static final String TABLE_USER_INFO = "UserInformation";
+    public static final String TABLE_WORKOUTS = "Workouts";
+    public static final String TABLE_USER_PROGRESS = "UserProgress";
+    public static final String TABLE_USER_INFO = "UserInformation";
 
-    private static final String[][] COLUMNS_WORKOUTS = {
-            {"EXERCISE_NAME", "TEXT"},
-            {"CHEST", "INTEGER"},
-            {"BACK", "INTEGER"},
-            {"SHOULDERS", "INTEGER"},
-            {"ARMS", "INTEGER"},
-            {"LEGS", "INTEGER"}
+    public static final String[][] COLUMNS_WORKOUTS = {
+            {"Exercise_Name", "TEXT"},
+            {"Exercise_Description", "TEXT"},
+            {"MUSCLES_WORKED_1", "TEXT"},
+            {"MUSCLES_WORKED_2", "TEXT"},
+            {"MUSCLES_WORKED_3", "TEXT"}
     };
 
-    private static final String[][] COLUMNS_USER_PROGRESS = {
+    public static final String[][] COLUMNS_USER_PROGRESS = {
             {"WORKOUT_COUNTER", "INTEGER PRIMARY KEY AUTOINCREMENT"},
             {"DATE", "INTEGER"},
             {"WORKOUT_DATA", "TEXT"}
     };
 
-    private static final String[][] COLUMNS_USER_INFORMATION = {
+    public static final String[][] COLUMNS_USER_INFORMATION = {
             {"NAME", "TEXT"},
             {"BIRTHDAY", "INTEGER"},
             {"HEIGHT", "REAL"},
@@ -115,7 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + tableName;
         Cursor data = db.rawQuery(query, null);
-        Log.d(TAG, "Executed CMD: " + query);
+        Log.d(TAG, "Executed Query: " + query);
         return data;
     }
 
@@ -123,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + colName + " FROM " + tableName;
         Cursor data = db.rawQuery(query, null);
-        Log.d(TAG, "Executed CMD: " + query);
+        Log.d(TAG, "Executed Query: " + query);
         return data;
     }
 
@@ -136,7 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         query = query.substring(0, query.length() - 2) + "FROM " + tableName;
         Cursor data = db.rawQuery(query, null);
-        Log.d(TAG, "Executed CMD: " + query);
+        Log.d(TAG, "Executed Query: " + query);
         return data;
     }
 
@@ -152,7 +151,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         query = query.substring(0, query.length() - 2) + "FROM " + tableName + " WHERE ";
         Cursor data = db.rawQuery(query, null);
-        Log.d(TAG, "Executed CMD: " + query);
+        Log.d(TAG, "Executed Query: " + query);
         return data;
     }
 }
