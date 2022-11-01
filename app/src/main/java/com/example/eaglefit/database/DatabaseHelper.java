@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     public static final String DATABASE_NAME = "EagleFitData";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_WORKOUTS = "Workouts";
     public static final String TABLE_USER_PROGRESS = "UserProgress";

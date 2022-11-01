@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.example.eaglefit.database.WorkoutData;
+
 public class MuscleSearchActivity extends AppCompatActivity {
 
     private static final String TAG = "MuscleSearchFragment";
@@ -26,7 +28,7 @@ public class MuscleSearchActivity extends AppCompatActivity {
 
     private void populateListView() {
         Intent intent = getIntent();
-        String[] exercises = intent.getStringArrayExtra("Exercises");
+        WorkoutData[] exercises = (WorkoutData[]) intent.getParcelableArrayExtra("Exercises");
 
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exercises);
         lvMuscleSearch.setAdapter(adapter);

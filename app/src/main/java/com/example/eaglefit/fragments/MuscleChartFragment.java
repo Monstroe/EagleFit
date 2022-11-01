@@ -13,39 +13,55 @@ import android.widget.Button;
 import com.example.eaglefit.MuscleSearchActivity;
 import com.example.eaglefit.R;
 import com.example.eaglefit.database.MuscleName;
+import com.example.eaglefit.database.WorkoutData;
 import com.example.eaglefit.database.WorkoutsQueryHelper;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 public class MuscleChartFragment extends Fragment {
 
     private WorkoutsQueryHelper workoutsQueryHelper;
 
-    private Button btnMuscleSearch;
+    private LinkedHashMap<Button, MuscleName> muscleChartButtons;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_muscle_chart, container, false);
+        View view = inflater.inflate(R.layout.fragment_muscle_chart, container, false); //<-- Don't worry about this
 
+        //Initializing WorkoutQueryHelper Class. This class is used to search through the database.
         workoutsQueryHelper = new WorkoutsQueryHelper(view.getContext());
-
-        btnMuscleSearch = (Button) view.findViewById(R.id.muscle_search_btn);
-        btnMuscleSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String[] exercises = workoutsQueryHelper.grabExercises(MuscleName.Chest);
-                Intent intent = new Intent(getActivity(), MuscleSearchActivity.class);
-                intent.putExtra("Exercises", exercises);
-                startActivity(intent);
-            }
-        });
-
+        //ArrayList holding all of the buttons on the Muscle Man
+        muscleChartButtons = new LinkedHashMap<>();
+        addButtonsToList(view);
+        addEventsToButtons();
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void addEventsToButtons() {
+        for (Button button : muscleChartButtons.keySet()) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    WorkoutData[] exercises = workoutsQueryHelper.grabExercises(muscleChartButtons.get(button));
+                    Intent intent = new Intent(getActivity(), MuscleSearchActivity.class);
+                    intent.putExtra("Exercises", exercises);
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
+    private void addButtonsToList(View view) {
+        muscleChartButtons.put((Button) view.findViewById(R.id.muscle_search_btn), MuscleName.Chest); //TEMP: For testing
+        //TODO: Add buttons to list
     }
 }

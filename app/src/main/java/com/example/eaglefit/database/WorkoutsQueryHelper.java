@@ -21,19 +21,21 @@ public class WorkoutsQueryHelper {
         databaseHelper = DatabaseHelper.getInstance(context);
     }
 
-    public String[] grabExercises(MuscleName muscleName) {
+    public WorkoutData[] grabExercises(MuscleName muscleName) {
         Cursor data = grabExerciseCursor(getMuscleNameString(muscleName));
 
-        List<String> dataList = new ArrayList<String>();
+        List<WorkoutData> dataList = new ArrayList<WorkoutData>();
         while(data.moveToNext()) {
-            dataList.add(data.getString(0));
+            dataList.add(new WorkoutData(data.getString(0), data.getString(1)));
         }
 
-        return (String[]) dataList.toArray();
+        WorkoutData[] dataListArr = new WorkoutData[dataList.size()];
+        dataListArr = dataList.toArray(dataListArr);
+        return dataListArr;
     }
 
     private Cursor grabExerciseCursor(String muscleName) {
-        String query = "SELECT " + databaseHelper.COLUMNS_WORKOUTS[0][0] + "," + databaseHelper.COLUMNS_WORKOUTS[1][0] + " WHERE " + databaseHelper.COLUMNS_WORKOUTS[2][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[3][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[4][0] + "='" + muscleName + "'";
+        String query = "SELECT " + databaseHelper.COLUMNS_WORKOUTS[0][0] + "," + databaseHelper.COLUMNS_WORKOUTS[1][0] + " FROM " + databaseHelper.TABLE_WORKOUTS +" WHERE " + databaseHelper.COLUMNS_WORKOUTS[2][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[3][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[4][0] + "='" + muscleName + "'";
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         Cursor data = db.rawQuery(query, null);
         Log.d(TAG, "Executed Query: " + query); //DEBUG
