@@ -9,10 +9,10 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.eaglefit.database.DatabaseHelper;
-import com.example.eaglefit.fragments.HomeFragment;
-import com.example.eaglefit.fragments.MuscleChartFragment;
-import com.example.eaglefit.fragments.PersonalFragment;
-import com.example.eaglefit.fragments.WorkoutFragment;
+import com.example.eaglefit.fragments.main.HomeFragment;
+import com.example.eaglefit.fragments.main.MuscleChartFragment;
+import com.example.eaglefit.fragments.main.PersonalFragment;
+import com.example.eaglefit.fragments.main.WorkoutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        Log.d(TAG, dataBase.grabTable("Workouts").toString());
 
         //Start on dashboard page
         setActivePage(R.id.home);

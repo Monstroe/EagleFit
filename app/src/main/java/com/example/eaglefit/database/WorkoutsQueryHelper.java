@@ -21,7 +21,7 @@ public class WorkoutsQueryHelper {
         databaseHelper = DatabaseHelper.getInstance(context);
     }
 
-    public WorkoutData[] grabExercises(MuscleName muscleName) {
+    public List<WorkoutData> grabExercises(MuscleName muscleName) {
         Cursor data = grabExerciseCursor(getMuscleNameString(muscleName));
 
         List<WorkoutData> dataList = new ArrayList<WorkoutData>();
@@ -29,14 +29,13 @@ public class WorkoutsQueryHelper {
             dataList.add(new WorkoutData(data.getString(0), data.getString(1)));
         }
 
-        WorkoutData[] dataListArr = new WorkoutData[dataList.size()];
-        dataListArr = dataList.toArray(dataListArr);
-        return dataListArr;
+        return dataList;
     }
 
     private Cursor grabExerciseCursor(String muscleName) {
         String query = "SELECT " + databaseHelper.COLUMNS_WORKOUTS[0][0] + "," + databaseHelper.COLUMNS_WORKOUTS[1][0] + " FROM " + databaseHelper.TABLE_WORKOUTS +" WHERE " + databaseHelper.COLUMNS_WORKOUTS[2][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[3][0] + "='" + muscleName + "' OR " + databaseHelper.COLUMNS_WORKOUTS[4][0] + "='" + muscleName + "'";
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        //SQLiteDatabase db = databaseHelper.getWritableDatabase(); //<--Remove
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
         Cursor data = db.rawQuery(query, null);
         Log.d(TAG, "Executed Query: " + query); //DEBUG
         return data;

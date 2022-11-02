@@ -1,9 +1,12 @@
 package com.example.eaglefit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,54 +14,34 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.eaglefit.database.WorkoutData;
+import com.example.eaglefit.fragments.muscle.SearchFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MuscleSearchActivity extends AppCompatActivity {
 
-    private static final String TAG = "MuscleSearchFragment";
-
-    private WorkoutData[] exercises;
-
-    private ListView lvMuscleSearch;
+    private static final String TAG = "MuscleSearchActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_muscle_search);
 
-        lvMuscleSearch = (ListView) findViewById(R.id.muscle_search_listView);
-        populateListView();
-        addEventToListView();
-
-    }
-
-    private void addEventToListView() {
-        lvMuscleSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String selectedItemName = (String) adapterView.getItemAtPosition(position);
-                for(WorkoutData exercise : exercises) {
-                    if(exercise.getExerciseName().equals(selectedItemName)) {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("ExerciseName", exercise.getExerciseName());
-                        bundle.putString("ExerciseDesc", exercise.getExerciseDescription());
-                        //Navigate to fragment
-                    }
-                }
-            }
-        });
-    }
-
-    private void populateListView() {
+        //Grabbing data from MuscleChartFragment
         Intent intent = getIntent();
-        exercises = (WorkoutData[]) intent.getParcelableArrayExtra("Exercises");
+        List<WorkoutData> exercises = intent.getParcelableArrayListExtra("Exercises");
+        //Preparing data from MuscleChartFragment to be sent to SearchFragment
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("Exercises", (ArrayList<? extends Parcelable>) exercises);
 
-        String[] exerciseNames = new String[exercises.length];
-        for(int i = 0; i < exerciseNames.length; i++) {
-            exerciseNames[i] = exercises[i].getExerciseName();
-        }
+        //Create new instance of SearchFragment
+        SearchFragment fragment = new SearchFragment();
+        //Send the exercise data to SearchFragment
+        fragment.setArguments(bundle);
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseNames);
-        lvMuscleSearch.setAdapter(adapter);
+        //Set fragment as view
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, fragment).commit();
     }
 
 }

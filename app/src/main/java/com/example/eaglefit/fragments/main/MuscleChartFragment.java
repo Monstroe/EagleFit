@@ -1,10 +1,12 @@
-package com.example.eaglefit.fragments;
+package com.example.eaglefit.fragments.main;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class MuscleChartFragment extends Fragment {
+
+    private static final String TAG = "MuscleChartFragment";
 
     private WorkoutsQueryHelper workoutsQueryHelper;
 
@@ -51,9 +55,9 @@ public class MuscleChartFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    WorkoutData[] exercises = workoutsQueryHelper.grabExercises(muscleChartButtons.get(button));
+                    List<WorkoutData> exercises = workoutsQueryHelper.grabExercises(muscleChartButtons.get(button));
                     Intent intent = new Intent(getActivity(), MuscleSearchActivity.class);
-                    intent.putExtra("Exercises", exercises);
+                    intent.putParcelableArrayListExtra("Exercises", (ArrayList<? extends Parcelable>) exercises);
                     startActivity(intent);
                 }
             });
