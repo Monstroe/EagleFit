@@ -1,24 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.MuscleChartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Muscle Chart Fragment"
-        android:textSize="25sp"
-        android:layout_gravity="center"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="110dp"
-        android:layout_height="49dp"
-        android:text="Switch"
-        android:showText="false"
-        />
+        <ImageView
+            android:id="@+id/imageFront"
+            android:layout_width="match_parent"
+            android:layout_height="636dp"
+            android:background="@color/white"
+            android:src="@drawable/muscle_front"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible"
+            android:contentDescription="@string/frImageDesc" />
+
+        <ImageView
+            android:id="@+id/imageBack"
+            android:layout_width="match_parent"
+            android:layout_height="636dp"
+            android:background="@color/white"
+            android:src="@drawable/muscle_back"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="invisible"
+            android:contentDescription="@string/bImageDesc" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/chartFlipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:showText="false"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageFront"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textFront"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switchLabel1"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/chartFlipper"
+            app:layout_constraintEnd_toStartOf="@+id/chartFlipper"
+            app:layout_constraintTop_toBottomOf="@+id/imageFront"
+            tools:textSize="20sp"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switchLabel2"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/chartFlipper"
+            app:layout_constraintStart_toEndOf="@+id/chartFlipper"
+            app:layout_constraintTop_toBottomOf="@+id/imageFront" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>
