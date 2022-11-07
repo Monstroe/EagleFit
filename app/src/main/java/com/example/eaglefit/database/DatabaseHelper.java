@@ -35,10 +35,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     };
 
     public static final String[][] COLUMNS_USER_INFORMATION = {
-            {"NAME", "TEXT"},
-            {"BIRTHDAY", "INTEGER"},
-            {"HEIGHT", "REAL"},
-            {"WEIGHT", "REAL"}
+            {"KEY", "TEXT"},
+            {"VALUE", "TEXT"},
     };
 
 
