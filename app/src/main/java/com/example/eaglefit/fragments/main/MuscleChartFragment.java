@@ -53,6 +53,20 @@ public class MuscleChartFragment extends Fragment {
         addButtonsToList(view);
         addEventsToButtons();
 
+        //Switch properties and actions ISSUE IS HERE
+//        chartFlipper = (SwitchCompat) chartFlipper.findViewById(R.id.chartFlipper);
+//        frontIm = (ImageView) frontIm.findViewById(R.id.imageFront);
+//        backIm = (ImageView) backIm.findViewById(R.id.imageBack);
+//        Boolean switchState = chartFlipper.isChecked();
+//
+//        if(switchState){
+//            frontIm.setVisibility(View.VISIBLE);
+//            backIm.setVisibility(View.INVISIBLE);
+//        }else{
+//            frontIm.setVisibility((View.INVISIBLE));
+//            backIm.setVisibility(View.VISIBLE);
+//        }
+
         // Inflate the layout for this fragment
         return view;
     }
