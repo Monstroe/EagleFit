@@ -4,10 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+//import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Switch;
+import androidx.appcompat.widget.SwitchCompat;
+
 
 import com.example.eaglefit.R;
 
@@ -27,8 +31,10 @@ public class MuscleChartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    // New switch for chart flipper
-    Switch chartFlipper;
+    // Variables for switch, images, buttons, etc.
+    private SwitchCompat chartFlipper;
+    private ImageView frontIm;
+    private ImageView backIm;
 
     public MuscleChartFragment() {
         // Required empty public constructor
@@ -56,16 +62,23 @@ public class MuscleChartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        chartFlipper = (Switch) chartFlipper.findViewById(R.id.chartFlipper);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-//        if(chartFlipper.isChecked()){
+        //Switch properties and actions ISSUE IS HERE
+//        chartFlipper = (SwitchCompat) chartFlipper.findViewById(R.id.chartFlipper);
+//        frontIm = (ImageView) frontIm.findViewById(R.id.imageFront);
+//        backIm = (ImageView) backIm.findViewById(R.id.imageBack);
+//        Boolean switchState = chartFlipper.isChecked();
 //
+//        if(switchState){
+//            frontIm.setVisibility(View.VISIBLE);
+//            backIm.setVisibility(View.INVISIBLE);
 //        }else{
-//
+//            frontIm.setVisibility((View.INVISIBLE));
+//            backIm.setVisibility(View.VISIBLE);
 //        }
     }
 
@@ -73,6 +86,7 @@ public class MuscleChartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //Switch properties and actions ISSUE IS HERE
         return inflater.inflate(R.layout.fragment_muscle_chart, container, false);
     }
 
