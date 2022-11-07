@@ -3,6 +3,7 @@ package com.example.eaglefit.fragments.main;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Parcelable;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.eaglefit.MuscleSearchActivity;
 import com.example.eaglefit.R;
@@ -29,6 +31,11 @@ public class MuscleChartFragment extends Fragment {
     private WorkoutsQueryHelper workoutsQueryHelper;
 
     private LinkedHashMap<Button, MuscleName> muscleChartButtons;
+
+    // Variables for switch, images, buttons, etc.
+    private SwitchCompat chartFlipper;
+    private ImageView frontIm;
+    private ImageView backIm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
