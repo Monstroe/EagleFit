@@ -11,6 +11,7 @@ import com.example.eaglefit.fragments.DashboardFragment;
 import com.example.eaglefit.fragments.MuscleChartFragment;
 import com.example.eaglefit.fragments.StatsFragment;
 import com.example.eaglefit.fragments.WorkoutFragment;
+import com.example.eaglefit.fragments.PersonalFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.workout: fragment = new WorkoutFragment();
                 break;
             case R.id.stats: fragment = new StatsFragment();
+                break;
+            case R.id.personal: fragment = new PersonalFragment();
                 break;
         }
 

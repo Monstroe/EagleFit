@@ -19,5 +19,9 @@
         android:id="@+id/stats"
         android:title="Statistics"
         android:icon="@drawable/ic_stats"/>
+    <item
+        android:id="@+id/personal"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Personal" />
 
 </menu>

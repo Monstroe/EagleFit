@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Personal Achievements"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="52dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="40dp"
+        android:text="Name: "
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        tools:layout_editor_absoluteX="28dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditText"
+        android:layout_width="175dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="30dp"
+        android:hint="Click to enter name"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        tools:layout_editor_absoluteX="80dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="Age: "
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="28dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditText2"
+        android:layout_width="191dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="28dp"
+        android:hint="Click to enter age"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
+        tools:layout_editor_absoluteX="68dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
