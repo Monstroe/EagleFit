@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/tv_exercise_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exercise Name"
+        android:layout_marginLeft="12dp"
+        android:textSize="18sp"/>
+
+    <!--Sets-->
+    <TextView
+        android:id="@+id/tv_sets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_below="@id/tv_exercise_name"
+        android:layout_marginLeft="16dp"
+        android:text="Sets:"/>
+
+    <EditText
+        android:id="@+id/et_sets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="3"
+        android:inputType="number"
+        android:layout_toRightOf="@id/tv_sets"
+        android:layout_alignTop="@id/tv_sets"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="16dp"
+        android:hint="Sets" />
+
+    <!--X in the middle-->
+    <TextView
+        android:id="@+id/tv_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        android:layout_toRightOf="@id/et_sets"
+        android:layout_alignTop="@id/tv_sets"
+        android:textSize="18sp"/>
+
+    <!--Reps-->
+    <TextView
+        android:id="@+id/tv_reps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/tv_x"
+        android:layout_marginLeft="16dp"
+        android:layout_alignTop="@id/tv_sets"
+        android:text="Reps:"/>
+
+    <EditText
+        android:id="@+id/et_reps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="3"
+        android:inputType="number"
+        android:layout_toRightOf="@id/tv_reps"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="-10dp"
+        android:layout_alignTop="@id/tv_sets"
+        android:hint="Reps" />
+
+</RelativeLayout>

@@ -19,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_WORKOUTS = "Workouts";
     public static final String TABLE_USER_PROGRESS = "UserProgress";
     public static final String TABLE_USER_INFO = "UserInformation";
+    public static final String TABLE_PLANS = "Plans";
 
     public static final String[][] COLUMNS_WORKOUTS = {
             {"Exercise_Name", "TEXT"},
@@ -39,6 +40,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             {"VALUE", "TEXT"},
     };
 
+    public static final String[][] COLUMNS_PLANS = {
+            {"WORKOUT_PLAN_NAME", "TEXT"},
+            {"SUNDAY", "TEXT"},
+            {"MONDAY", "TEXT"},
+            {"TUESDAY", "TEXT"},
+            {"WEDNESDAY", "TEXT"},
+            {"THURSDAY", "TEXT"},
+            {"FRIDAY", "TEXT"},
+            {"SATURDAY", "TEXT"}
+    };
+
 
     private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -57,15 +69,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         TableBuilder workoutTable = new TableBuilder(TABLE_WORKOUTS, COLUMNS_WORKOUTS);
         TableBuilder userProgressTable = new TableBuilder(TABLE_USER_PROGRESS, COLUMNS_USER_PROGRESS);
         TableBuilder userInformationTable = new TableBuilder(TABLE_USER_INFO, COLUMNS_USER_INFORMATION);
+        TableBuilder plansTable = new TableBuilder(TABLE_PLANS, COLUMNS_PLANS);
 
         db.execSQL(workoutTable.getDeclarationString());
         db.execSQL(userProgressTable.getDeclarationString());
         db.execSQL(userInformationTable.getDeclarationString());
+        db.execSQL(plansTable.getDeclarationString());
 
         //Generated Commands:
         //CREATE TABLE Workouts (EXERCISE_NAME TEXT, CHEST INTEGER, BACK INTEGER, SHOULDERS INTEGER, ARMS INTEGER, LEGS INTEGER
         //CREATE TABLE UserProgress (WORKOUT_COUNTER INTEGER PRIMARY KEY AUTOINCREMENT, DATE INTEGER, BENCH_PRESS REAL, SQUATS REAL, DEADLIFTS REAL)
         //CREATE TABLE UserInformation (NAME TEXT, BIRTHDAY INTEGER, HEIGHT REAL, WEIGHT REAL)
+        //CREATE TABLE Plans ...
     }
 
     @Override

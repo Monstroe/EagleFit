@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WorkoutPlanActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8sp"
+        android:scrollbarSize="8sp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_rename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:text="Name" />
+
+            <Button
+                android:id="@+id/btn_rename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_rename"
+                android:layout_centerInParent="true"
+                android:layout_alignLeft="@id/et_rename"
+                android:layout_marginTop="-8dp"
+                android:text="Rename" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_rename"
+                android:layout_centerInParent="true"
+                android:layout_alignRight="@id/et_rename"
+                android:layout_marginTop="-8dp"
+                android:text="Delete" />
+
+            <!--Sunday-->
+            <TextView
+                android:id="@+id/tv_sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunday"
+                android:layout_below="@id/btn_rename"
+                android:layout_marginLeft="12dp"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_new_workout_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:layout_below="@id/tv_sunday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_rest_day_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Day"
+                android:layout_below="@id/tv_sunday"
+                android:layout_toRightOf="@id/btn_new_workout_sun"
+                android:layout_marginLeft="32dp"/>
+
+            <!--Monday-->
+            <TextView
+                android:id="@+id/tv_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday"
+                android:layout_below="@id/btn_new_workout_sun"
+                android:layout_marginLeft="12dp"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_new_workout_mon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:layout_below="@id/tv_monday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_rest_day_mon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Day"
+                android:layout_below="@id/tv_monday"
+                android:layout_toRightOf="@id/btn_new_workout_mon"
+                android:layout_marginLeft="32dp"/>
+
+            <!--Tuesday-->
+            <TextView
+                android:id="@+id/tv_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday"
+                android:layout_below="@id/btn_new_workout_mon"
+                android:layout_marginLeft="12dp"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_new_workout_tues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:layout_below="@id/tv_tuesday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_rest_day_tues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Day"
+                android:layout_below="@id/tv_tuesday"
+                android:layout_toRightOf="@id/btn_new_workout_tues"
+                android:layout_marginLeft="32dp"/>
+
+            <!--Wednesday-->
+            <TextView
+                android:id="@+id/tv_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wednesday"
+                android:layout_below="@id/btn_new_workout_tues"
+                android:layout_marginLeft="12dp"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_new_workout_wed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:layout_below="@id/tv_wednesday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_rest_day_wed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Day"
+                android:layout_below="@id/tv_wednesday"
+                android:layout_toRightOf="@id/btn_new_workout_wed"
+                android:layout_marginLeft="32dp"/>
+
+            <!--Thursday-->
+            <TextView
+                android:id="@+id/tv_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thursday"
+                android:layout_below="@id/btn_new_workout_wed"
+                android:layout_marginLeft="12dp"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_new_workout_thurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:layout_below="@id/tv_thursday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_rest_day_thurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Day"
+                android:layout_below="@id/tv_thursday"
+                android:layout_toRightOf="@id/btn_new_workout_tues"
+                android:layout_marginLeft="32dp"/>
+
+            <!--Friday-->
+            <TextView
+                android:id="@+id/tv_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday"
+                android:layout_below="@id/btn_new_workout_thurs"
+                android:layout_marginLeft="12dp"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_new_workout_fri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:layout_below="@id/tv_friday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_rest_day_fri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Day"
+                android:layout_below="@id/tv_friday"
+                android:layout_toRightOf="@id/btn_new_workout_fri"
+                android:layout_marginLeft="32dp"/>
+
+            <!--Saturday-->
+            <TextView
+                android:id="@+id/tv_saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:layout_below="@id/btn_new_workout_fri"
+                android:layout_marginLeft="12dp"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btn_new_workout_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:layout_below="@id/tv_saturday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_rest_day_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Day"
+                android:layout_below="@id/tv_saturday"
+                android:layout_toRightOf="@id/btn_new_workout_sat"
+                android:layout_marginLeft="32dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
