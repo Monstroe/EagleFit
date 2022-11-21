@@ -27,13 +27,22 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btn_add_to_plan"
+        android:id="@+id/btn_remove_from_plan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:layout_alignParentBottom="true"
+        android:text="Delete From Workout Plan" />
+
+    <Button
+        android:id="@+id/btn_add_to_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_above="@id/btn_remove_from_plan"
         android:text="Add to Workout Plan" />
 
 </RelativeLayout>

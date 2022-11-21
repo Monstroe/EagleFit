@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eaglefit.R;
+import com.example.eaglefit.database.ExercisesBacklogQueryHelper;
 import com.example.eaglefit.database.PlansQueryHelper;
 import com.example.eaglefit.database.WorkoutData;
 
@@ -28,10 +30,12 @@ public class ExerciseFragment extends Fragment {
 
     private WorkoutData exercise;
     private PlansQueryHelper plansQueryHelper;
+    private ExercisesBacklogQueryHelper exercisesBacklogQueryHelper;
 
     private TextView nameTv;
     private TextView descriptionTv;
     private Button addToPlanBtn;
+    private Button removeFromPlanBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class ExerciseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercise, container, false);
 
         plansQueryHelper = new PlansQueryHelper(view.getContext());
+        exercisesBacklogQueryHelper = new ExercisesBacklogQueryHelper(view.getContext());
 
         nameTv = view.findViewById(R.id.tv_exercise_name);
         descriptionTv = view.findViewById(R.id.tv_exercise_desc);
@@ -77,9 +82,45 @@ public class ExerciseFragment extends Fragment {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        //TODO
-                        //Database stuff
-                        return false;
+                        String selectedPlan = menuItem.getTitle().toString();
+                        if(!exercisesBacklogQueryHelper.isExerciseOnPlanBacklog(selectedPlan, exercise.getExerciseName())) {
+                            exercisesBacklogQueryHelper.insertNewExerciseToBacklog(selectedPlan, exercise.getExerciseName());
+                            Toast toast = Toast.makeText(view.getContext(), "Added to workout plan", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                        else {
+                            Toast toast = Toast.makeText(view.getContext(), "Exercise already on workout plan!", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+
+                        return true;
+                    }
+                });
+
+                popupMenu.show();
+            }
+        });
+
+        removeFromPlanBtn = (Button) view.findViewById(R.id.btn_remove_from_plan);
+        removeFromPlanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(view.getContext(), removeFromPlanBtn);
+                ArrayList<String> workoutPlans = plansQueryHelper.grabWorkoutPlanNames();
+                for(String plan : workoutPlans) {
+                    if(exercisesBacklogQueryHelper.isExerciseOnPlanBacklog(plan, exercise.getExerciseName())) {
+                        popupMenu.getMenu().add(plan);
+                    }
+                }
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        String selectedPlan = menuItem.getTitle().toString();
+                        exercisesBacklogQueryHelper.deleteExerciseFromBacklog(selectedPlan, exercise.getExerciseName());
+                        Toast toast = Toast.makeText(view.getContext(), "Removed from workout plan", Toast.LENGTH_SHORT);
+                        toast.show();
+                        return true;
                     }
                 });
 

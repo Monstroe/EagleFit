@@ -66,6 +66,16 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="8dp"/>
 
+            <Button
+                android:id="@+id/btn_edit_workout_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_below="@id/tv_sunday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"/>
+
             <CheckBox
                 android:id="@+id/cb_rest_day_sun"
                 android:layout_width="wrap_content"
@@ -93,6 +103,16 @@
                 android:layout_below="@id/tv_monday"
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btn_edit_workout_mon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_below="@id/tv_monday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"/>
 
             <CheckBox
                 android:id="@+id/cb_rest_day_mon"
@@ -122,6 +142,16 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="8dp"/>
 
+            <Button
+                android:id="@+id/btn_edit_workout_tues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_below="@id/tv_tuesday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"/>
+
             <CheckBox
                 android:id="@+id/cb_rest_day_tues"
                 android:layout_width="wrap_content"
@@ -149,6 +179,16 @@
                 android:layout_below="@id/tv_wednesday"
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btn_edit_workout_wed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_below="@id/tv_wednesday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"/>
 
             <CheckBox
                 android:id="@+id/cb_rest_day_wed"
@@ -178,6 +218,16 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="8dp"/>
 
+            <Button
+                android:id="@+id/btn_edit_workout_thurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_below="@id/tv_thursday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"/>
+
             <CheckBox
                 android:id="@+id/cb_rest_day_thurs"
                 android:layout_width="wrap_content"
@@ -206,6 +256,16 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="8dp"/>
 
+            <Button
+                android:id="@+id/btn_edit_workout_fri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_below="@id/tv_friday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"/>
+
             <CheckBox
                 android:id="@+id/cb_rest_day_fri"
                 android:layout_width="wrap_content"
@@ -233,6 +293,16 @@
                 android:layout_below="@id/tv_saturday"
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btn_edit_workout_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_below="@id/tv_saturday"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="invisible"/>
 
             <CheckBox
                 android:id="@+id/cb_rest_day_sat"

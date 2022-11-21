@@ -20,6 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_USER_PROGRESS = "UserProgress";
     public static final String TABLE_USER_INFO = "UserInformation";
     public static final String TABLE_PLANS = "Plans";
+    public static final String TABLE_USER_WORKOUTS = "UserWorkouts";
+    public static final String TABLE_EXERCISES_BACKLOG = "SelectedExercisesBacklog";
 
     public static final String[][] COLUMNS_WORKOUTS = {
             {"Exercise_Name", "TEXT"},
@@ -42,13 +44,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String[][] COLUMNS_PLANS = {
             {"WORKOUT_PLAN_NAME", "TEXT"},
-            {"SUNDAY", "TEXT"},
-            {"MONDAY", "TEXT"},
-            {"TUESDAY", "TEXT"},
-            {"WEDNESDAY", "TEXT"},
-            {"THURSDAY", "TEXT"},
-            {"FRIDAY", "TEXT"},
-            {"SATURDAY", "TEXT"}
+            {"SUNDAY", "BIT"},
+            {"MONDAY", "BIT"},
+            {"TUESDAY", "BIT"},
+            {"WEDNESDAY", "BIT"},
+            {"THURSDAY", "BIT"},
+            {"FRIDAY", "BIT"},
+            {"SATURDAY", "BIT"}
+    };
+
+    public static final String[][] COLUMNS_USER_WORKOUTS = {
+            {"WORKOUT_NAME", "TEXT"},
+            {"Exercise_Name", "TEXT"},
+            {"SETS", "INTEGER"},
+            {"REPS", "INTEGER"}
+    };
+
+    public static final String[][] COLUMNS_EXERCISES_BACKLOG = {
+            {"WORKOUT_PLAN_NAME", "TEXT"},
+            {"Exercise_Name", "TEXT"}
     };
 
 
@@ -70,17 +84,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         TableBuilder userProgressTable = new TableBuilder(TABLE_USER_PROGRESS, COLUMNS_USER_PROGRESS);
         TableBuilder userInformationTable = new TableBuilder(TABLE_USER_INFO, COLUMNS_USER_INFORMATION);
         TableBuilder plansTable = new TableBuilder(TABLE_PLANS, COLUMNS_PLANS);
+        TableBuilder userWorkoutsTable = new TableBuilder(TABLE_USER_WORKOUTS, COLUMNS_USER_WORKOUTS);
+        TableBuilder exercisesBacklogTable = new TableBuilder(TABLE_EXERCISES_BACKLOG, COLUMNS_EXERCISES_BACKLOG);
 
         db.execSQL(workoutTable.getDeclarationString());
         db.execSQL(userProgressTable.getDeclarationString());
         db.execSQL(userInformationTable.getDeclarationString());
         db.execSQL(plansTable.getDeclarationString());
+        db.execSQL(userWorkoutsTable.getDeclarationString());
+        db.execSQL(exercisesBacklogTable.getDeclarationString());
 
         //Generated Commands:
         //CREATE TABLE Workouts (EXERCISE_NAME TEXT, CHEST INTEGER, BACK INTEGER, SHOULDERS INTEGER, ARMS INTEGER, LEGS INTEGER
         //CREATE TABLE UserProgress (WORKOUT_COUNTER INTEGER PRIMARY KEY AUTOINCREMENT, DATE INTEGER, BENCH_PRESS REAL, SQUATS REAL, DEADLIFTS REAL)
         //CREATE TABLE UserInformation (NAME TEXT, BIRTHDAY INTEGER, HEIGHT REAL, WEIGHT REAL)
         //CREATE TABLE Plans ...
+        //CREATE TABLE UserWorkouts ...
+        //CREATE TABLE SelectedExercisesBacklog
     }
 
     @Override
@@ -88,7 +108,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKOUTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_PROGRESS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_INFO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLANS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_WORKOUTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXERCISES_BACKLOG);
     }
+
+    public void createNewTable(String tableName, String[][] columns) {
+        SQLiteDatabase db = getWritableDatabase();
+        TableBuilder tableBuilder = new TableBuilder(tableName, columns);
+        db.execSQL(tableBuilder.getDeclarationString());
+    }
+
+    //DELETE EVERYTHING AFTER THIS
 
     public boolean addItem(String tableName, String columnName, String item) {
         SQLiteDatabase db = getWritableDatabase();

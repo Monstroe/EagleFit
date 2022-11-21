@@ -4,13 +4,31 @@
     android:layout_height="match_parent"
     android:paddingBottom="16dp">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_exercise_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exercise Name"
         android:layout_marginLeft="12dp"
-        android:textSize="18sp"/>
+        android:textSize="18sp"/>-->
+
+    <Spinner
+        android:id="@+id/spn_exercise_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!--<com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_sets">
+
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bench Press"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>-->
 
     <!--Sets-->
     <TextView
@@ -18,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:layout_below="@id/tv_exercise_name"
+        android:layout_below="@id/spn_exercise_name"
         android:layout_marginLeft="16dp"
         android:text="Sets:"/>
 

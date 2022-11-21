@@ -61,5 +61,61 @@ public class PlansQueryHelper {
         return true;
     }
 
+    public void updateWorkoutDay(String planName, int dayOfTheWeek) {
+        String day = getDayOfTheWeek(dayOfTheWeek);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "UPDATE " + DatabaseHelper.TABLE_PLANS + " SET " + day + "=1 WHERE " +  DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "'";
+        db.execSQL(query);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+    }
+
+    public boolean doesWorkoutExist(String planName, int dayOfTheWeek) {
+        String day = getDayOfTheWeek(dayOfTheWeek);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "SELECT " + day + " FROM " + DatabaseHelper.TABLE_PLANS + " WHERE " +  day + "=1" + " AND " + DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "'";
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+
+        if(data.getCount() == 0) return false;
+        return true;
+    }
+
+    public void deleteWorkoutPlan(String planName) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "DELETE FROM " + DatabaseHelper.TABLE_PLANS + " WHERE " + DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "'";
+        db.execSQL(query);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+    }
+
+    public void deleteWorkoutFromPlan(String planName, int dayOfTheWeek) {
+        String day = getDayOfTheWeek(dayOfTheWeek);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "UPDATE " + DatabaseHelper.TABLE_PLANS + " SET " + day + "=0 WHERE " + DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "'";
+        db.execSQL(query);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+    }
+
+    public String getDayOfTheWeek(int dayOfTheWeek) {
+        String str = null;
+        switch(dayOfTheWeek) {
+            case 0: str = "SUNDAY";
+                break;
+            case 1: str = "MONDAY";
+                break;
+            case 2: str = "TUESDAY";
+                break;
+            case 3: str = "WEDNESDAY";
+                break;
+            case 4: str = "THURSDAY";
+                break;
+            case 5: str = "FRIDAY";
+                break;
+            case 6: str = "SATURDAY";
+                break;
+        }
+
+        return str;
+    }
+
 
 }
