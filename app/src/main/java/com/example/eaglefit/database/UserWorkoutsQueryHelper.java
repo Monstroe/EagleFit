@@ -85,6 +85,13 @@ public class UserWorkoutsQueryHelper {
         Log.d(TAG, "Executed Query: " + query); //DEBUG
     }
 
+    public void deleteExercise(String workoutName, String exerciseName) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "DELETE FROM " + DatabaseHelper.TABLE_USER_WORKOUTS + " WHERE " + DatabaseHelper.COLUMNS_USER_WORKOUTS[0][0] + "='" +  workoutName + "' AND " + DatabaseHelper.COLUMNS_USER_WORKOUTS[1][0] + "='" + exerciseName + "'";
+        db.execSQL(query);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+    }
+
     public void updateWorkoutPlanName(String oldPlanName, String newPlanName) {
         String[] daysOfTheWeek = { "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY" };
         for(int i = 0; i < daysOfTheWeek.length; i++) {
