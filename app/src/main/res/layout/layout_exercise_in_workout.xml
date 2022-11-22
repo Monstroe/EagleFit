@@ -86,4 +86,14 @@
         android:layout_alignTop="@id/tv_sets"
         android:hint="Reps" />
 
+    <Button
+        android:id="@+id/btn_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/et_reps"
+        android:layout_alignTop="@id/et_reps"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="-8dp"
+        android:text="Remove" />
+
 </RelativeLayout>

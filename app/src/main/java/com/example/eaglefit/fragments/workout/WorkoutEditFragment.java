@@ -41,6 +41,7 @@ public class WorkoutEditFragment extends Fragment {
     private PlansQueryHelper plansQueryHelper;
     private List<SavedExerciseData> exerciseData;
     private List<String> exercisesInBacklog;
+    private List<String> exercisesInSpinner;
 
     private Button addNewExerciseBtn;
     private Button deleteWorkoutBtn;
@@ -50,6 +51,8 @@ public class WorkoutEditFragment extends Fragment {
     private List<EditText> setsEts;
     private List<EditText> repsEts;
     private List<Button> removeBtns;
+
+    private boolean selected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,15 +81,9 @@ public class WorkoutEditFragment extends Fragment {
 
         exerciseData = userWorkoutsQueryHelper.grabExercisesInWorkout(workoutName);
         exercisesInBacklog = exercisesBacklogQueryHelper.grabExercisesFromBacklog(planName);
+        exercisesInSpinner = new ArrayList<String>();
 
-        List<String> exercisesInSpinner = new ArrayList<String>();
-        //List<String> temp = exerciseData.forEach();
-        for(String exercise : exercisesInBacklog) {
-            if(!exerciseData.contains(exercise)) {
-
-            }
-        }
-
+        updateExercisesInSpinner();
         addExercisesFromDatabase(view);
 
         addNewExerciseBtn = (Button) view.findViewById(R.id.btn_add_new_exercise);
@@ -118,6 +115,19 @@ public class WorkoutEditFragment extends Fragment {
         return view;
     }
 
+    private void updateExercisesInSpinner() {
+        exercisesInSpinner.clear();
+        List<String> exerciseDataStr = new ArrayList<String>();
+        for(SavedExerciseData data : exerciseData) {
+            exerciseDataStr.add(data.getExerciseName());
+        }
+        for(String exercise : exercisesInBacklog) {
+            if(!exerciseDataStr.contains(exercise)) {
+                exercisesInSpinner.add(exercise);
+            }
+        }
+    }
+
     private void addExercisesFromDatabase(View view) {
         for(SavedExerciseData data : exerciseData) {
             View exerciseV = createSpinnerMenu(view);
@@ -141,15 +151,15 @@ public class WorkoutEditFragment extends Fragment {
         Spinner spinner = (Spinner) v.findViewById(R.id.spn_exercise_name);
         EditText setsEt = (EditText) v.findViewById(R.id.et_sets);
         EditText repsEt = (EditText) v.findViewById(R.id.et_reps);
-        //Button removeBtn = (Button) v.findViewById(R.id.btn_remove);
+        Button removeBtn = (Button) v.findViewById(R.id.btn_remove);
 
         exercisesSpns.add(spinner);
         setsEts.add(setsEt);
         repsEts.add(repsEt);
-        //removeBtns.add(removeBtn);
+        removeBtns.add(removeBtn);
 
-        List<String> exercises = exercisesBacklogQueryHelper.grabExercisesFromBacklog(planName);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, exercises);
+        //List<String> exercises = exercisesBacklogQueryHelper.grabExercisesFromBacklog(planName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, exercisesInSpinner);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -158,10 +168,22 @@ public class WorkoutEditFragment extends Fragment {
                 if(!userWorkoutsQueryHelper.doesExerciseExistInWorkout(workoutName, exerciseData.get(exercisesSpns.indexOf(spinner)).getExerciseName())) {
                     Log.d(TAG, "BRUH: NEW");
                     userWorkoutsQueryHelper.insertNewExerciseIntoWorkout(workoutName, selectedItemName);
+                    updateExercisesInSpinner();
+
+                    List<String> temp = exercisesInSpinner;
+                    temp.add(selectedItemName);
+                    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, temp);
+                    spinner.setAdapter(adapter1);
                 }
-                else {
+                else if(!selectedItemName.equals(exerciseData.get(exercisesSpns.indexOf(spinner)).getExerciseName())){
                     Log.d(TAG, "BRUH: UPDATE");
                     userWorkoutsQueryHelper.updateExerciseIntoWorkout(workoutName, selectedItemName, exerciseData.get(exercisesSpns.indexOf(spinner)).getExerciseName());
+                    updateExercisesInSpinner();
+
+                    List<String> temp = exercisesInSpinner;
+                    temp.add(selectedItemName);
+                    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, temp);
+                    spinner.setAdapter(adapter1);
                 }
                 exerciseData.get(exercisesSpns.indexOf(spinner)).setExerciseName(selectedItemName);
             }
@@ -193,10 +215,10 @@ public class WorkoutEditFragment extends Fragment {
                 }
             }
         });
-        /*removeBtn.setOnClickListener(new View.OnClickListener() {
+        removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //int index = removeBtns.indexOf(removeBtn);
+                int index = removeBtns.indexOf(removeBtn);
 
                 userWorkoutsQueryHelper.deleteExercise(workoutName, exerciseData.get(index).getExerciseName());
 
@@ -204,11 +226,14 @@ public class WorkoutEditFragment extends Fragment {
                 setsEts.remove(index);
                 repsEts.remove(index);
                 removeBtns.remove(index);
+
                 exerciseData.remove(index);
+
+                updateExercisesInSpinner();
 
                 exerciseLl.removeView(v);
             }
-        });*/
+        });
 
         return v;
     }
