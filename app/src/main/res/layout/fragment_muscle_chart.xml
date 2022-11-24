@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fillViewport="true">
+    tools:context=".fragments.main.WorkoutFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,33 +14,34 @@
             android:id="@+id/muscle_search_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:text="Search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="190dp"
-            android:layout_height="664dp"
+            android:layout_height="580dp"
+            android:contentDescription="@string/frImageDesc"
             android:src="@drawable/muscle_front_half"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/frImageDesc" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="190dp"
-            android:layout_height="664dp"
+            android:layout_height="580dp"
+            android:contentDescription="@string/bImageDesc"
             android:src="@drawable/muscle_back_half"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteY="16dp"
-            android:contentDescription="@string/bImageDesc" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="110dp"
-            android:layout_height="111dp"
+            android:layout_width="88dp"
+            android:layout_height="86dp"
             android:rotation="270"
             android:text="@string/muscleChartLabel1"
             android:textColor="#FF3700B3"
@@ -50,8 +51,8 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="110dp"
-            android:layout_height="111dp"
+            android:layout_width="88dp"
+            android:layout_height="86dp"
             android:rotation="-270"
             android:text="@string/muscleChartLabel2"
             android:textColor="#FF3700B3"
@@ -64,13 +65,259 @@
             android:layout_width="1dp"
             android:layout_height="729dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/PecButton"
+            android:layout_width="46dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="110dp"
+            android:text="Pec"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/FShoulderButton"
+            android:layout_width="25dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="97dp"
+            android:layout_marginTop="85dp"
+            android:rotation="50"
+            android:text="Shoulder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/BShoulderButton"
+            android:layout_width="25dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="85dp"
+            android:layout_marginEnd="97dp"
+            android:rotation="-50"
+            android:text="ShoulderBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/BicepButton"
+            android:layout_width="65dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="155dp"
+            android:rotation="-50"
+            android:text="Bicep"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <Button
+            android:id="@+id/FForearmButton"
+            android:layout_width="61dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="210dp"
+            android:rotation="-60"
+            android:text="ForearmFront"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/AbsButton"
+            android:layout_width="91dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="195dp"
+            android:rotation="90"
+            android:text="abs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/ObliqueButton"
+            android:layout_width="91dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="87dp"
+            android:layout_marginTop="190dp"
+            android:rotation="90"
+            android:text="Oblique"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/QuadButton"
+            android:layout_width="32dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginBottom="176dp"
+            android:rotation="-10"
+            android:text="Quad"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/GroinButton"
+            android:layout_width="23dp"
+            android:layout_height="77dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginBottom="236dp"
+            android:rotation="-10"
+            android:text="Groin"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/DeltButton"
+            android:layout_width="38dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="140dp"
+            android:text="Delt"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/TricepButton"
+            android:layout_width="33dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="138dp"
+            android:layout_marginEnd="70dp"
+            android:rotation="-30"
+            android:text="Tricep"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/BForearmButton"
+            android:layout_width="25dp"
+            android:layout_height="74dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="310dp"
+            android:rotation="-30"
+            android:text="ForearmBack"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/ScapButton"
+            android:layout_width="23dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="150dp"
+            android:text="Scap"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/LatButton"
+            android:layout_width="35dp"
+            android:layout_height="104dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="115dp"
+            android:text="Lat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/GluteButton"
+            android:layout_width="48dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="245dp"
+            android:layout_marginEnd="125dp"
+            android:text="Glute"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/HamstringButton"
+            android:layout_width="58dp"
+            android:layout_height="96dp"
+            android:layout_marginEnd="110dp"
+            android:layout_marginBottom="180dp"
+            android:text="Hamstring"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/CalfButton"
+            android:layout_width="46dp"
+            android:layout_height="74dp"
+            android:layout_marginEnd="105dp"
+            android:layout_marginBottom="80dp"
+            android:text="Calf"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textMuscleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="MuscleName"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/textScientificMuscleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Scientific Muscle Name"
+            app:layout_constraintStart_toStartOf="@+id/textMuscleName"
+            app:layout_constraintTop_toBottomOf="@+id/textMuscleName" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="110dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercises for Muscle:"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</ScrollView>
+</RelativeLayout>
