@@ -15,5 +15,8 @@ public enum MuscleName {
     Quads,
     Hamstrings,
     Calves,
-    Abs
+    Abs,
+    Scaps,
+    Groin,
+    Oblique
 }

@@ -32,11 +32,6 @@ public class MuscleChartFragment extends Fragment {
 
     private LinkedHashMap<Button, MuscleName> muscleChartButtons;
 
-    // Variables for switch, images, buttons, etc.
-    private SwitchCompat chartFlipper;
-    private ImageView frontIm;
-    private ImageView backIm;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,20 +47,6 @@ public class MuscleChartFragment extends Fragment {
         muscleChartButtons = new LinkedHashMap<>();
         addButtonsToList(view);
         addEventsToButtons();
-
-        //Switch properties and actions ISSUE IS HERE
-//        chartFlipper = (SwitchCompat) chartFlipper.findViewById(R.id.chartFlipper);
-//        frontIm = (ImageView) frontIm.findViewById(R.id.imageFront);
-//        backIm = (ImageView) backIm.findViewById(R.id.imageBack);
-//        Boolean switchState = chartFlipper.isChecked();
-//
-//        if(switchState){
-//            frontIm.setVisibility(View.VISIBLE);
-//            backIm.setVisibility(View.INVISIBLE);
-//        }else{
-//            frontIm.setVisibility((View.INVISIBLE));
-//            backIm.setVisibility(View.VISIBLE);
-//        }
 
         // Inflate the layout for this fragment
         return view;
@@ -87,6 +68,25 @@ public class MuscleChartFragment extends Fragment {
 
     private void addButtonsToList(View view) {
         muscleChartButtons.put((Button) view.findViewById(R.id.muscle_search_btn), MuscleName.Chest); //TEMP: For testing
-        //TODO: Add buttons to list
+
+        //Front Side Buttons
+        muscleChartButtons.put((Button) view.findViewById(R.id.FShoulderButton), MuscleName.FrontDelts);
+        muscleChartButtons.put((Button) view.findViewById(R.id.BicepButton), MuscleName.Biceps);
+        muscleChartButtons.put((Button) view.findViewById(R.id.FForearmButton), MuscleName.Forearms);
+        muscleChartButtons.put((Button) view.findViewById(R.id.PecButton), MuscleName.Chest);
+        muscleChartButtons.put((Button) view.findViewById(R.id.AbsButton), MuscleName.Abs);
+        muscleChartButtons.put((Button) view.findViewById(R.id.ObliqueButton), MuscleName.Oblique);
+        muscleChartButtons.put((Button) view.findViewById(R.id.QuadButton), MuscleName.Quads);
+        muscleChartButtons.put((Button) view.findViewById(R.id.GroinButton), MuscleName.Groin);
+
+        //Back Side Buttons
+        muscleChartButtons.put((Button) view.findViewById(R.id.BShoulderButton), MuscleName.RearDelts);
+        muscleChartButtons.put((Button) view.findViewById(R.id.TrapButton), MuscleName.Traps);
+        muscleChartButtons.put((Button) view.findViewById(R.id.ScapButton), MuscleName.Scaps);
+        muscleChartButtons.put((Button) view.findViewById(R.id.LatButton), MuscleName.Lats);
+        muscleChartButtons.put((Button) view.findViewById(R.id.GluteButton), MuscleName.Glutes);
+        muscleChartButtons.put((Button) view.findViewById(R.id.HamstringButton), MuscleName.Hamstrings);
+        muscleChartButtons.put((Button) view.findViewById(R.id.CalfButton), MuscleName.Calves);
+
     }
 }
