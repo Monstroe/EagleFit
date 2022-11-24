@@ -1,83 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.main.MuscleChartFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/muscle_search_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"/>
+            android:text="Search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageFront"
-            android:layout_width="411dp"
-            android:layout_height="600dp"
-            android:background="@color/black"
-            android:contentDescription="@string/frImageDesc"
-            android:src="@drawable/muscle_front"
-            android:visibility="visible"
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/imageView"
+            android:layout_width="190dp"
+            android:layout_height="664dp"
+            android:src="@drawable/muscle_front_half"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/frImageDesc" />
 
         <ImageView
-            android:id="@+id/imageBack"
-            android:layout_width="411dp"
-            android:layout_height="600dp"
-            android:background="@color/black"
-            android:contentDescription="@string/bImageDesc"
-            android:src="@drawable/muscle_back"
-            android:visibility="invisible"
+            android:id="@+id/imageView2"
+            android:layout_width="190dp"
+            android:layout_height="664dp"
+            android:src="@drawable/muscle_back_half"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:visibility="invisible" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/chartFlipper"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:showText="false"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageFront"
-            tools:visibility="visible" />
+            tools:layout_editor_absoluteY="16dp"
+            android:contentDescription="@string/bImageDesc" />
 
         <TextView
-            android:id="@+id/textFront"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/switchLabel1"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/chartFlipper"
-            app:layout_constraintEnd_toStartOf="@+id/chartFlipper"
-            app:layout_constraintTop_toBottomOf="@+id/imageFront" />
+            android:id="@+id/textView"
+            android:layout_width="110dp"
+            android:layout_height="111dp"
+            android:rotation="270"
+            android:text="@string/muscleChartLabel1"
+            android:textColor="#FF3700B3"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/switchLabel2"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/chartFlipper"
-            app:layout_constraintStart_toEndOf="@+id/chartFlipper"
-            app:layout_constraintTop_toBottomOf="@+id/imageFront" />
+            android:id="@+id/textView2"
+            android:layout_width="110dp"
+            android:layout_height="111dp"
+            android:rotation="-270"
+            android:text="@string/muscleChartLabel2"
+            android:textColor="#FF3700B3"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="1dp"
+            android:layout_height="729dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</FrameLayout>
+</ScrollView>
