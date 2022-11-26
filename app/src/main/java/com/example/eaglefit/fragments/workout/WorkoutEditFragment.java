@@ -158,34 +158,31 @@ public class WorkoutEditFragment extends Fragment {
         repsEts.add(repsEt);
         removeBtns.add(removeBtn);
 
-        //List<String> exercises = exercisesBacklogQueryHelper.grabExercisesFromBacklog(planName);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, exercisesInSpinner);
+        List<String> exercises = exercisesBacklogQueryHelper.grabExercisesFromBacklog(planName);
+        exercises.add(0, "None");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, exercises);
         spinner.setAdapter(adapter);
+        spinner.setSelection(0);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 String selectedItemName = (String) adapterView.getItemAtPosition(position);
+                if(!exercisesInSpinner.contains(selectedItemName)) {
+                    spinner.setSelection();
+                    exerciseData.get(exercisesSpns.indexOf(spinner)).setExerciseName("None");
+                    updateExercisesInSpinner();
+                    return;
+                }
                 if(!userWorkoutsQueryHelper.doesExerciseExistInWorkout(workoutName, exerciseData.get(exercisesSpns.indexOf(spinner)).getExerciseName())) {
                     Log.d(TAG, "BRUH: NEW");
                     userWorkoutsQueryHelper.insertNewExerciseIntoWorkout(workoutName, selectedItemName);
-                    updateExercisesInSpinner();
-
-                    List<String> temp = exercisesInSpinner;
-                    temp.add(selectedItemName);
-                    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, temp);
-                    spinner.setAdapter(adapter1);
                 }
                 else if(!selectedItemName.equals(exerciseData.get(exercisesSpns.indexOf(spinner)).getExerciseName())){
                     Log.d(TAG, "BRUH: UPDATE");
                     userWorkoutsQueryHelper.updateExerciseIntoWorkout(workoutName, selectedItemName, exerciseData.get(exercisesSpns.indexOf(spinner)).getExerciseName());
-                    updateExercisesInSpinner();
-
-                    List<String> temp = exercisesInSpinner;
-                    temp.add(selectedItemName);
-                    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, temp);
-                    spinner.setAdapter(adapter1);
                 }
                 exerciseData.get(exercisesSpns.indexOf(spinner)).setExerciseName(selectedItemName);
+                updateExercisesInSpinner();
             }
 
             @Override
