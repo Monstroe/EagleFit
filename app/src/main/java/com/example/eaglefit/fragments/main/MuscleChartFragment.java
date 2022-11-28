@@ -67,7 +67,7 @@ public class MuscleChartFragment extends Fragment {
     }
 
     private void addButtonsToList(View view) {
-        muscleChartButtons.put((Button) view.findViewById(R.id.muscle_search_btn), MuscleName.Chest); //TEMP: For testing
+        //muscleChartButtons.put((Button) view.findViewById(R.id.muscle_search_btn), MuscleName.Chest); //TEMP: For testing
 
         //Front Side Buttons
         muscleChartButtons.put((Button) view.findViewById(R.id.FShoulderButton), MuscleName.FrontDelts);

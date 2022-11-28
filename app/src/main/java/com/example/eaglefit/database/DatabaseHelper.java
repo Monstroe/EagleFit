@@ -51,7 +51,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             {"THURSDAY", "BIT"},
             {"FRIDAY", "BIT"},
             {"SATURDAY", "BIT"},
-
             {"ACTIVE_WORKOUT", "BIT"}
     };
 

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.nfc.Tag;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -159,7 +160,11 @@ public class PlansQueryHelper {
         Cursor data = db.rawQuery(query, null);
         Log.d(TAG, "Executed Query: " + query); //DEBUG
 
-        return data.getString(0);
+        data.moveToFirst();
+        String dataStr = data.getString(0);
+
+        if(data.getCount() == 0) return null;
+        return dataStr;
     }
 
 }

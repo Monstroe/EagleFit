@@ -198,9 +198,13 @@ public class WorkoutEditFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus) {
-                    if(Integer.parseInt(String.valueOf(setsEt.getText())) != exerciseData.get(setsEts.indexOf(setsEt)).getSets()) {
-                        userWorkoutsQueryHelper.updateSets(Integer.parseInt(String.valueOf(setsEt.getText())), workoutName, exerciseData.get(setsEts.indexOf(setsEt)).getExerciseName());
-                        exerciseData.get(setsEts.indexOf(setsEt)).setSets(Integer.parseInt(String.valueOf(setsEt.getText())));
+                    try {
+                        if(Integer.parseInt(String.valueOf(setsEt.getText())) != exerciseData.get(setsEts.indexOf(setsEt)).getSets()) {
+                            userWorkoutsQueryHelper.updateSets(Integer.parseInt(String.valueOf(setsEt.getText())), workoutName, exerciseData.get(setsEts.indexOf(setsEt)).getExerciseName());
+                            exerciseData.get(setsEts.indexOf(setsEt)).setSets(Integer.parseInt(String.valueOf(setsEt.getText())));
+                        }
+                    } catch(Exception e) {
+
                     }
                 }
             }
@@ -209,9 +213,13 @@ public class WorkoutEditFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus) {
-                    if(Integer.parseInt(String.valueOf(repsEt.getText())) != exerciseData.get(repsEts.indexOf(repsEt)).getReps()) {
-                        userWorkoutsQueryHelper.updateReps(Integer.parseInt(String.valueOf(repsEt.getText())), workoutName, exerciseData.get(repsEts.indexOf(repsEt)).getExerciseName());
-                        exerciseData.get(repsEts.indexOf(repsEt)).setReps(Integer.parseInt(String.valueOf(repsEt.getText())));
+                    try {
+                        if(Integer.parseInt(String.valueOf(repsEt.getText())) != exerciseData.get(repsEts.indexOf(repsEt)).getReps()) {
+                            userWorkoutsQueryHelper.updateReps(Integer.parseInt(String.valueOf(repsEt.getText())), workoutName, exerciseData.get(repsEts.indexOf(repsEt)).getExerciseName());
+                            exerciseData.get(repsEts.indexOf(repsEt)).setReps(Integer.parseInt(String.valueOf(repsEt.getText())));
+                        }
+                    } catch(Exception e) {
+
                     }
                 }
             }
