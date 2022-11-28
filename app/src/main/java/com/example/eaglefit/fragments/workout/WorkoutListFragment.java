@@ -18,6 +18,7 @@ import com.example.eaglefit.MuscleSearchActivity;
 import com.example.eaglefit.R;
 import com.example.eaglefit.database.ExercisesBacklogQueryHelper;
 import com.example.eaglefit.database.PlansQueryHelper;
+import com.example.eaglefit.database.SavedExerciseData;
 import com.example.eaglefit.database.UserWorkoutsQueryHelper;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class WorkoutListFragment extends Fragment {
    private EditText planNameEt;
    private Button planRenameBtn;
    private Button planDeleteBtn;
+   private Button setActiveBtn;
 
    private ArrayList<Button> newWorkoutBtns;
    private ArrayList<CheckBox> restDayCbs;
@@ -59,6 +61,7 @@ public class WorkoutListFragment extends Fragment {
 
         planRenameBtn = (Button) view.findViewById(R.id.btn_rename);
         planDeleteBtn = (Button) view.findViewById(R.id.btn_delete);
+        setActiveBtn = (Button) view.findViewById(R.id.btn_set_active);
 
         planRenameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +82,14 @@ public class WorkoutListFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 //TODO: Pass data to intent
                 startActivity(intent);
+            }
+        });
+        setActiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                plansQueryHelper.setActivePlan(planName);
+                Toast toast = Toast.makeText(view.getContext(), "Set as active plan", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
@@ -143,22 +154,34 @@ public class WorkoutListFragment extends Fragment {
             checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(checkBox.isChecked()) {
-                        newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(false);
-                        newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(0.25f);
-
-                        editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(false);
-                        editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(0.25f);
-                    }
-                    else {
-                        newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(true);
-                        newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(1.0f);
-
-                        editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(true);
-                        editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(1.0f);
-                    }
+                    toggleCheckedRestDay(checkBox);
                 }
             });
+        }
+    }
+
+    private void toggleCheckedRestDay(CheckBox checkBox) {
+        if(checkBox.isChecked()) {
+            newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(false);
+            newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(0.25f);
+
+            editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(false);
+            editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(0.25f);
+
+            plansQueryHelper.setWorkoutAsRestDay(planName, restDayCbs.indexOf(checkBox));
+        }
+        else {
+            newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(true);
+            newWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(1.0f);
+
+            editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setClickable(true);
+            editWorkoutBtns.get(restDayCbs.indexOf(checkBox)).setAlpha(1.0f);
+
+            List<SavedExerciseData> temp = userWorkoutsQueryHelper.grabExercisesInWorkout(planName + "_" + plansQueryHelper.getDayOfTheWeek(restDayCbs.indexOf(checkBox)));
+            if(temp.size() == 0)
+                plansQueryHelper.deleteWorkoutFromPlan(planName, restDayCbs.indexOf(checkBox));
+            else
+                plansQueryHelper.updateWorkoutDay(planName, restDayCbs.indexOf(checkBox));
         }
     }
 
@@ -167,6 +190,17 @@ public class WorkoutListFragment extends Fragment {
             if(plansQueryHelper.doesWorkoutExist(planName, newWorkoutBtns.indexOf(button))) {
                 button.setVisibility(View.INVISIBLE);
                 editWorkoutBtns.get(newWorkoutBtns.indexOf(button)).setVisibility(View.VISIBLE);
+            }
+        }
+        boolean[] restDays = plansQueryHelper.grabRestDays(planName);
+        for(int i = 0; i < restDays.length; i++) {
+            restDayCbs.get(i).setChecked(restDays[i]);
+            if(restDays[i]) {
+                newWorkoutBtns.get(i).setClickable(false);
+                newWorkoutBtns.get(i).setAlpha(0.25f);
+
+                editWorkoutBtns.get(i).setClickable(false);
+                editWorkoutBtns.get(i).setAlpha(0.25f);
             }
         }
     }

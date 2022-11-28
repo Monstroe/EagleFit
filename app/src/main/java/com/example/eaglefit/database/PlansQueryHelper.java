@@ -90,9 +90,34 @@ public class PlansQueryHelper {
     public void deleteWorkoutFromPlan(String planName, int dayOfTheWeek) {
         String day = getDayOfTheWeek(dayOfTheWeek);
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "UPDATE " + DatabaseHelper.TABLE_PLANS + " SET " + day + "=NULL WHERE " + DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "'";
+        db.execSQL(query);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+    }
+
+    public void setWorkoutAsRestDay(String planName, int dayOfTheWeek) {
+        String day = getDayOfTheWeek(dayOfTheWeek);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
         String query = "UPDATE " + DatabaseHelper.TABLE_PLANS + " SET " + day + "=0 WHERE " + DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "'";
         db.execSQL(query);
         Log.d(TAG, "Executed Query: " + query); //DEBUG
+    }
+
+    public boolean[] grabRestDays(String planName) {
+        String[] daysOfTheWeek = { "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY" };
+        boolean[] restDays = new boolean[7];
+        for(int i = 0; i < daysOfTheWeek.length; i++) {
+            SQLiteDatabase db = databaseHelper.getWritableDatabase();
+            String query = "SELECT " + DatabaseHelper.COLUMNS_PLANS[0][0] + " FROM " + databaseHelper.TABLE_PLANS + " WHERE " + DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "' AND " + daysOfTheWeek[i] + "=0";
+            Cursor data = db.rawQuery(query, null);
+            Log.d(TAG, "Executed Query: " + query); //DEBUG
+
+            if(data.getCount() == 0)
+                restDays[i] = false;
+            else
+                restDays[i] = true;
+        }
+        return restDays;
     }
 
     public String getDayOfTheWeek(int dayOfTheWeek) {
@@ -117,5 +142,24 @@ public class PlansQueryHelper {
         return str;
     }
 
+
+    public void setActivePlan(String planName) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query1 = "UPDATE " + DatabaseHelper.TABLE_PLANS + " SET " + DatabaseHelper.COLUMNS_PLANS[8][0] + "=0 WHERE " + DatabaseHelper.COLUMNS_PLANS[8][0] + "=1";
+        String query2 = "UPDATE " + DatabaseHelper.TABLE_PLANS + " SET " + DatabaseHelper.COLUMNS_PLANS[8][0] + "=1 WHERE " + DatabaseHelper.COLUMNS_PLANS[0][0] + "='" + planName + "'";
+        db.execSQL(query1);
+        db.execSQL(query2);
+        Log.d(TAG, "Executed Query: " + query1); //DEBUG
+        Log.d(TAG, "Executed Query: " + query2); //DEBUG
+    }
+
+    public String getActivePlan() {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "SELECT " + DatabaseHelper.COLUMNS_PLANS[0][0] + " FROM " + DatabaseHelper.TABLE_PLANS + " WHERE " + DatabaseHelper.COLUMNS_PLANS[8][0] + "=1";
+        Cursor data = db.rawQuery(query, null);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+
+        return data.getString(0);
+    }
 
 }

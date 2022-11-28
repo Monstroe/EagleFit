@@ -50,7 +50,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             {"WEDNESDAY", "BIT"},
             {"THURSDAY", "BIT"},
             {"FRIDAY", "BIT"},
-            {"SATURDAY", "BIT"}
+            {"SATURDAY", "BIT"},
+
+            {"ACTIVE_WORKOUT", "BIT"}
     };
 
     public static final String[][] COLUMNS_USER_WORKOUTS = {

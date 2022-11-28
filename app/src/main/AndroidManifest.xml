@@ -13,6 +13,13 @@
         android:theme="@style/Theme.EagleFit"
         tools:targetApi="31">
         <activity
+            android:name=".StartWorkoutActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".WorkoutPlanActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">

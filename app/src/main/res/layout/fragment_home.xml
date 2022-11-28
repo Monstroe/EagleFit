@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,10 +7,29 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dashboard Fragment"
+        android:text="Welcome to EagleFit!"
         android:textSize="25sp"
-        android:layout_gravity="center"/>
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_workout_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Workout In: "
+        android:textSize="25sp"
+        android:layout_below="@id/tv_title"/>
+
+    <Button
+        android:id="@+id/btn_start_workout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Workout"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_workout_time"
+        android:layout_marginTop="64sp"/>
+
+</RelativeLayout>
