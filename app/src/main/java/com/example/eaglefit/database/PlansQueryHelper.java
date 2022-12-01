@@ -160,10 +160,10 @@ public class PlansQueryHelper {
         Cursor data = db.rawQuery(query, null);
         Log.d(TAG, "Executed Query: " + query); //DEBUG
 
+        if(data.getCount() == 0) return null;
+
         data.moveToFirst();
         String dataStr = data.getString(0);
-
-        if(data.getCount() == 0) return null;
         return dataStr;
     }
 
