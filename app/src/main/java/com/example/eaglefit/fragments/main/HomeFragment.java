@@ -11,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.eaglefit.R;
 import com.example.eaglefit.StartWorkoutActivity;
 import com.example.eaglefit.WorkoutPlanActivity;
 import com.example.eaglefit.database.PlansQueryHelper;
 import com.example.eaglefit.database.UserWorkoutsQueryHelper;
+
+import org.w3c.dom.Text;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -34,6 +37,7 @@ public class HomeFragment extends Fragment {
     private UserWorkoutsQueryHelper userWorkoutsQueryHelper;
 
     private Button startWorkoutBtn;
+    private TextView titleTv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,11 +77,7 @@ public class HomeFragment extends Fragment {
         userWorkoutsQueryHelper = new UserWorkoutsQueryHelper(getContext());
 
         startWorkoutBtn = (Button) view.findViewById(R.id.btn_start_workout);
-
-        if(userWorkoutsQueryHelper.grabExercisesInWorkout(plansQueryHelper.getActivePlan() + "_" + dayOfWeekStr).size() == 0) {
-            startWorkoutBtn.setClickable(false);
-            startWorkoutBtn.setAlpha(0.25f);
-        }
+        titleTv = (TextView) view.findViewById(R.id.tv_workout_day);
 
         startWorkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +87,12 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        if(userWorkoutsQueryHelper.grabExercisesInWorkout(plansQueryHelper.getActivePlan() + "_" + dayOfWeekStr).size() == 0) {
+            startWorkoutBtn.setClickable(false);
+            startWorkoutBtn.setAlpha(0.25f);
+            titleTv.setText("No Workout Scheduled for Today");
+        }
 
 
         // Inflate the layout for this fragment

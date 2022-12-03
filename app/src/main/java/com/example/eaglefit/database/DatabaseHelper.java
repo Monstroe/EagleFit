@@ -33,8 +33,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String[][] COLUMNS_USER_PROGRESS = {
             {"WORKOUT_COUNTER", "INTEGER PRIMARY KEY AUTOINCREMENT"},
-            {"DATE", "INTEGER"},
-            {"WORKOUT_DATA", "TEXT"}
+            {"EXERCISE_NAME", "TEXT"},
+            {"WEIGHT", "INTEGER"},
+            {"REPS", "INTEGER"}
     };
 
     public static final String[][] COLUMNS_USER_INFORMATION = {

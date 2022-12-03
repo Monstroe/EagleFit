@@ -6,30 +6,40 @@
     tools:context=".fragments.main.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to EagleFit!"
         android:textSize="25sp"
         android:layout_centerInParent="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"/>-->
 
-    <TextView
-        android:id="@+id/tv_workout_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Workout In: "
-        android:textSize="25sp"
-        android:layout_below="@id/tv_title"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_start_workout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Workout"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_workout_time"
-        android:layout_marginTop="64sp"/>
+        <TextView
+            android:id="@+id/tv_workout_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Workout Scheduled for Today"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32sp"
+            android:textSize="25sp"/>
+        <!--android:layout_below="@id/tv_title"-->
+
+        <Button
+            android:id="@+id/btn_start_workout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Workout"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_workout_day"
+            android:layout_marginTop="64sp"/>
+
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
