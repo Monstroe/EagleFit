@@ -33,7 +33,7 @@ public class UserProgressQueryHelper {
     }
 
     public ArrayList<Integer> grabWeightExerciseData(String exerciseName) {
-        String query = "SELECT " + DatabaseHelper.COLUMNS_USER_PROGRESS[2][0] + " FROM " + databaseHelper.TABLE_PLANS + " WHERE " + DatabaseHelper.COLUMNS_USER_PROGRESS[1][0] + "='" + exerciseName + "'";
+        String query = "SELECT " + DatabaseHelper.COLUMNS_USER_PROGRESS[2][0] + " FROM " + databaseHelper.TABLE_USER_PROGRESS + " WHERE " + DatabaseHelper.COLUMNS_USER_PROGRESS[1][0] + "='" + exerciseName + "'";
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         Cursor data = db.rawQuery(query, null);
         Log.d(TAG, "Executed Query: " + query); //DEBUG

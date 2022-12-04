@@ -7,60 +7,106 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.eaglefit.R;
+import com.example.eaglefit.database.UserInfoQueryHelper;
+import com.example.eaglefit.database.UserProgressQueryHelper;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PersonalFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class PersonalFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private LineGraphSeries<DataPoint> benchSeries;
+    private LineGraphSeries<DataPoint> squatSeries;
+    private LineGraphSeries<DataPoint> deadliftSeries;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText nameEt;
+    private EditText ageEt;
+    private EditText heightEt;
+    private EditText weightEt;
 
-    public PersonalFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StatsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PersonalFragment newInstance(String param1, String param2) {
-        PersonalFragment fragment = new PersonalFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private UserProgressQueryHelper userProgressQueryHelper;
+    private UserInfoQueryHelper userInfoQueryHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_personal, container, false);
+
+        userProgressQueryHelper = new UserProgressQueryHelper(getContext());
+        userInfoQueryHelper = new UserInfoQueryHelper(getContext());
+
+        nameEt = (EditText) view.findViewById(R.id.et_name);
+        ageEt = (EditText) view.findViewById(R.id.et_age);
+        heightEt = (EditText) view.findViewById(R.id.et_height);
+        weightEt = (EditText) view.findViewById(R.id.et_weight);
+
+        nameEt.setText(userInfoQueryHelper.grabName());
+        ageEt.setText(String.valueOf(userInfoQueryHelper.grabAge()));
+        heightEt.setText(String.valueOf(userInfoQueryHelper.grabHeight()));
+        weightEt.setText(String.valueOf(userInfoQueryHelper.grabWeight()));
+
+        nameEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                userInfoQueryHelper.insertName(String.valueOf(nameEt.getText()));
+            }
+        });
+        ageEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                userInfoQueryHelper.insertAge(Integer.parseInt(String.valueOf(ageEt.getText())));
+            }
+        });
+        heightEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                userInfoQueryHelper.insertHeight(Integer.parseInt(String.valueOf(heightEt.getText())));
+            }
+        });
+        weightEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                userInfoQueryHelper.insertWeight(Integer.parseInt(String.valueOf(weightEt.getText())));
+            }
+        });
+
+        GraphView graphBench = (GraphView) view.findViewById(R.id.gv_bench);
+        benchSeries = new LineGraphSeries<>();
+        List<Integer> list1 = userProgressQueryHelper.grabWeightExerciseData("Flat Bench Press");
+        for(int i = 0; i < list1.size(); i++) {
+            benchSeries.appendData(new DataPoint(i, list1.get(i)), true, list1.size());
+        }
+        graphBench.addSeries(benchSeries);
+
+        GraphView graphSquat = (GraphView) view.findViewById(R.id.gv_squat);
+        squatSeries = new LineGraphSeries<>();
+        List<Integer> list2 = userProgressQueryHelper.grabWeightExerciseData("Back Squat");
+        for(int i = 0; i < list2.size(); i++) {
+            squatSeries.appendData(new DataPoint(i, list2.get(i)), true, list2.size());
+        }
+        graphSquat.addSeries(squatSeries);
+
+        GraphView graphDeadlift = (GraphView) view.findViewById(R.id.gv_deadlift);
+        deadliftSeries = new LineGraphSeries<>();
+        List<Integer> list3 = userProgressQueryHelper.grabWeightExerciseData("Barbell Deadlift");
+        for(int i = 0; i < list3.size(); i++) {
+            deadliftSeries.appendData(new DataPoint(i, list3.get(i)), true, list3.size());
+        }
+        graphDeadlift.addSeries(deadliftSeries);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal, container, false);
+        return view;
     }
 }

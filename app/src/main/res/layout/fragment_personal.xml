@@ -1,16 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.main.PersonalFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Personal Fragment"
-        android:textSize="25sp"
-        android:layout_gravity="center"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8sp"
+        android:scrollbarSize="8sp">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="64dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Data"
+                android:textSize="24sp"
+                android:layout_marginTop="16dp"
+                android:layout_centerHorizontal="true"/>
+
+            <!--Name-->
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/tv_title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Name:"/>
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:inputType="text"
+                android:layout_toRightOf="@id/tv_name"
+                android:layout_alignTop="@id/tv_name"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="-10dp"
+                android:hint="Full Name" />
+
+            <!--Age-->
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/tv_name"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Age:"/>
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="number"
+                android:layout_toRightOf="@id/tv_age"
+                android:layout_alignTop="@id/tv_age"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="-10dp"
+                android:hint="Years" />
+
+            <!--Height-->
+            <TextView
+                android:id="@+id/tv_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/tv_age"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Height:"/>
+
+            <EditText
+                android:id="@+id/et_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="number"
+                android:layout_toRightOf="@id/tv_height"
+                android:layout_alignTop="@id/tv_height"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="-10dp"
+                android:hint="Inches" />
+
+            <!--Weight-->
+            <TextView
+                android:id="@+id/tv_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/tv_height"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Weight:"/>
+
+            <EditText
+                android:id="@+id/et_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="number"
+                android:layout_toRightOf="@id/tv_weight"
+                android:layout_alignTop="@id/tv_weight"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="-10dp"
+                android:hint="Pounds" />
+
+            <!--GRAPHS-->
+            <TextView
+                android:id="@+id/tv_gvBench"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/tv_weight"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Flat Bench Press"/>
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/gv_bench"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_margin="16dp"
+                android:layout_below="@id/tv_gvBench"/>
+
+            <TextView
+                android:id="@+id/tv_gvSquat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/gv_bench"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="16dp"
+                android:text="Back Squat"/>
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/gv_squat"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_margin="16dp"
+                android:layout_below="@id/tv_gvSquat"/>
+
+            <TextView
+                android:id="@+id/tv_gvDeadlift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/gv_squat"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="16dp"
+                android:text="Barbell Deadlift"/>
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/gv_deadlift"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_margin="16dp"
+                android:layout_below="@id/tv_gvDeadlift"/>
+            
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/gv_deadlift"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

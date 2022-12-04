@@ -5,9 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".fragments.muscle.SearchFragment">
 
-    <ListView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/muscle_search_listView"/>
+        android:padding="8sp"
+        android:scrollbarSize="8sp">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/muscle_search_listView"/>
+
+    </ScrollView>
 
 </LinearLayout>

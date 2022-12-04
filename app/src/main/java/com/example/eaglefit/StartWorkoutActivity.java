@@ -88,7 +88,7 @@ public class StartWorkoutActivity extends AppCompatActivity {
                     if(data.getExerciseName().equals("Back Squat")) {
                         Log.d("Hello", "Squat");
                         View v = getMaxWeightView("Back Squat");
-                        userProgressQueryHelper.insertWorkoutData("BackSquat", Integer.parseInt(String.valueOf(((EditText) v.findViewById(R.id.et_weight)).getText())), Integer.parseInt(String.valueOf(((EditText) v.findViewById(R.id.et_reps)).getText())));
+                        userProgressQueryHelper.insertWorkoutData("Back Squat", Integer.parseInt(String.valueOf(((EditText) v.findViewById(R.id.et_weight)).getText())), Integer.parseInt(String.valueOf(((EditText) v.findViewById(R.id.et_reps)).getText())));
                     }
                     if(data.getExerciseName().equals("Barbell Deadlift")) {
                         Log.d("Hello", "Deadlift");

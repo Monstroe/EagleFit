@@ -29,6 +29,13 @@ public class UserInfoQueryHelper {
         Log.d(TAG, "Executed Query: " + query); //DEBUG
     }
 
+    public void insertAge(int age) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String query = "UPDATE " + databaseHelper.TABLE_USER_INFO + " SET " + databaseHelper.COLUMNS_USER_INFORMATION[1][0] + "='" +  age + "' WHERE " + databaseHelper.COLUMNS_USER_INFORMATION[0][0] + "=" + "'BIRTHDAY'";
+        db.execSQL(query);
+        Log.d(TAG, "Executed Query: " + query); //DEBUG
+    }
+
     public void insertHeight(int height) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         String query = "UPDATE " + databaseHelper.TABLE_USER_INFO + " SET " + databaseHelper.COLUMNS_USER_INFORMATION[1][0] + "='" +  height + "' WHERE " + databaseHelper.COLUMNS_USER_INFORMATION[0][0] + "=" + "'HEIGHT'";
@@ -45,7 +52,10 @@ public class UserInfoQueryHelper {
 
     public String grabName() {
         Cursor data = grabUserInfoCursor("NAME");
-        return data.getString(0);
+        data.moveToFirst();
+        String name = data.getString(0);
+        Log.d(TAG, "BRUH: " + name);
+        return name;
     }
 
     public int[] grabBirthday() {
@@ -55,16 +65,28 @@ public class UserInfoQueryHelper {
         return birthday;
     }
 
+    public int grabAge() {
+        Cursor data = grabUserInfoCursor("BIRTHDAY");
+        data.moveToFirst();
+        String birthdayStr = data.getString(0);
+        if(birthdayStr != null) return Integer.parseInt(birthdayStr);
+        return 0;
+    }
+
     public int grabHeight() {
         Cursor data = grabUserInfoCursor("HEIGHT");
+        data.moveToFirst();
         String heightStr = data.getString(0);
-        return Integer.parseInt(heightStr);
+        if(heightStr != null) return Integer.parseInt(heightStr);
+        return 0;
     }
 
     public int grabWeight() {
         Cursor data = grabUserInfoCursor("WEIGHT");
+        data.moveToFirst();
         String weightStr = data.getString(0);
-        return Integer.parseInt(weightStr);
+        if(weightStr != null) return Integer.parseInt(weightStr);
+        return 0;
     }
 
     private Cursor grabUserInfoCursor(String row) {
