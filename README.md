@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Monstroe/EagleFit">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="300" height="300">
   </a>
 
 <h3 align="center">EagleFit</h3>
@@ -106,7 +106,7 @@ To run the app, [Android Studio][AndroidStudio-url] is required.
    ```sh
    git clone https://github.com/Monstroe/EagleFit.git
    ```
-2. Open project with [Android Studio][AndroidStudio-url]
+2. Open the project with [Android Studio][AndroidStudio-url]
 3. Set up an [emulator](https://developer.android.com/studio/run/emulator) with [Android Studio][AndroidStudio-url]
 4. Click View > Tool Windows > Device File Explorer
 5. Move the database file ('EagleFitData') into the emulator. It should be installed in 'data/data/com.example.eaglefit/databases' of the emulator
