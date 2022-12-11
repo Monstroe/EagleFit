@@ -73,6 +73,8 @@
 
 EagleFit is an app that allows users to create workouts and schedule them for intended workout days. It allows users to select from a large number of exercises and filter through said exercises by the main muscle associated with them. Upon the creation of a workout, the app will allow the user to record the number of sets, and the weight used for each exercise, and will then save this information for future use. This will allow the user to track their progress over time. The app will NOT provide workout plan recommendations nor workout recommendations.
 
+_This project was created in one college semester for SE 300 (Software Engineering Practices). Whether or not this application will continue to be developed is unknown at this time._
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
