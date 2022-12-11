@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Monstroe/EagleFit">
-    <img src="images/logo.xml" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">EagleFit</h3>
