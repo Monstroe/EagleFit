@@ -2,15 +2,6 @@
 
 
 
-<!--[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]-->
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -23,14 +14,7 @@
   <p align="center">
     A fitness logbook that fits on your phone
     <br />
-    <!--<a href="https://github.com/Monstroe/EagleFit"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />-->
-    <!--<a href="https://github.com/Monstroe/EagleFit">View Demo</a>
-    ·
-    <a href="https://github.com/Monstroe/EagleFit/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/Monstroe/EagleFit/issues">Request Feature</a>-->
+    <!--<a href="https://github.com/Monstroe/EagleFit">View Demo</a>-->
   </p>
 </div>
 
@@ -53,10 +37,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <!--<li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>-->
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
     <!--<li><a href="#acknowledgments">Acknowledgments</a></li>-->
   </ol>
@@ -67,7 +48,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!--[![Product Name Screen Shot][product-screenshot]](https://example.com)-->
+<!--[![Product Name Screen Shot][product-screenshot]]()-->
 
  According to the Centers for Disease Control and Prevention (CDC), a lack of exercise can be a huge cause of heart disease, obesity, high blood pressure, high blood cholesterol, and type 2 diabetes (Chronic disease fact sheet: Physical inactivity 2022). The CDC also reports that only 23.2% of adults met the Physical Activity guidelines for both aerobic and muscle strengthening activity (Exercise or Physical Activity 2022). This means that most of the population, or at least those who do not exercise, may be at risk of getting the previously stated diseases. It is evident that while many may want to exercise, they do not know the proper way to, which would lead to the failure of habit creation. Often, good information can be hard to come by, paywalls and false information plague the fitness community, and the sheer amount of information can be overwhelming to someone new to exercise. The purpose of EagleFit is to aid and encourage people to exercise in an effort to decrease the percentage of people who perform little to no exercise. The problem this app is trying to solve is the number of health issues linked to lack of exercise and the injuries that can occur during improper exercise routines. The creators hope to decrease the number of yearly cases of these issues with this app.
 
@@ -123,7 +104,7 @@ To run the app, [Android Studio][AndroidStudio-url] is required.
 
 EagleFit can store specific personal information about the user, such as name, age, height, and weight. The app also provides a “Muscle Man” chart that is user interactive and allows the user to search for exercises that target specific muscles. The app can also allow the user to create multiple workout plans, with one being set as the active workout plan. A workout plan is a set of workouts; it can have up to 7 workouts each assigned to a day of a week. The active workout plan is the plan that the application will track. Finally, the user can add multiple exercises to each individual workout and specify the number of sets and reps for each exercise they will perform that day. The application uses the device’s internal calendar to keep track of the current day of the week and will automatically place the workout set to be performed on that day in the active workout plan. Any day of the week in workout plans can be set as a “rest day,” in which case the application will not schedule a workout for that day. When the user starts their scheduled workout, a logbook opens, allowing them to input the weight they used and the number of reps they performed for each set of each exercise. The application saves the highest amount of weight they performed and the highest number of reps they performed and displays this information in the form of progress charts.
 
-<!--_For a video demonstration, please refer to the [VideoDemo](https://example.com)_-->
+<!--_For a video demonstration, please refer to the [Video Demo]()_-->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -131,6 +112,8 @@ EagleFit can store specific personal information about the user, such as name, a
 
 <!-- CONTACT -->
 ## Contact
+
+[![Contributors][contributors-shield]][contributors-url]
 
 Project Link: [https://github.com/Monstroe/EagleFit](https://github.com/Monstroe/EagleFit)
 
